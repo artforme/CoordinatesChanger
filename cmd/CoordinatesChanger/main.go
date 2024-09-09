@@ -9,7 +9,6 @@ import (
 
 func main() {
 	// Run the main function of the application
-	fmt.Println("Hello, World!")
 
 	var (
 		tempSystemCoordinates string
