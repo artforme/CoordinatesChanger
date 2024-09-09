@@ -37,13 +37,6 @@ func Init(coordinatesSystem string) coord.CoordinatesSystem {
 		spherical.New(first, second, third)
 		return &spherical
 
-	case "POLAR":
-		var polar sysCoor.Polar
-		fmt.Println("Enter the first and second coordinates:")
-		fmt.Scan(&first, &second, &third)
-		polar.New(first, second, third)
-		return &polar
-
 	default:
 		return nil
 	}

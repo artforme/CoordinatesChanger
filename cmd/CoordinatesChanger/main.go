@@ -15,7 +15,7 @@ func main() {
 		tempSystemCoordinates string
 	)
 	fmt.Println("Enter the coordinates system you want to start with:")
-	fmt.Println("CARTESIAN, CYLINDRICAL, SPHERICAL, POLAR")
+	fmt.Println("CARTESIAN, CYLINDRICAL, SPHERICAL")
 	fmt.Scan(&tempSystemCoordinates)
 
 	var systemsCoordinatesObject coordinatesInterface.CoordinatesSystem
@@ -28,11 +28,14 @@ func main() {
 	}
 
 	fmt.Println("The coordinates system you have chosen is:", systemsCoordinatesObject.Info())
-	fmt.Println("The coordinates are:", systemsCoordinatesObject)
+	var decimalPlaces uint
+	fmt.Println("Enter the number of decimal places:")
+	fmt.Scan(&decimalPlaces)
+	fmt.Println("The coordinates are:", systemsCoordinatesObject.String(decimalPlaces))
 
 	for {
 		fmt.Println("Enter the coordinates system you want to convert to:")
-		fmt.Println("CARTESIAN, CYLINDRICAL, SPHERICAL, POLAR")
+		fmt.Println("CARTESIAN, CYLINDRICAL, SPHERICAL")
 		fmt.Scan(&tempSystemCoordinates)
 		tempSystemCoordinates = strings.ToUpper(tempSystemCoordinates)
 		switch tempSystemCoordinates {
@@ -42,14 +45,12 @@ func main() {
 			systemsCoordinatesObject = systemsCoordinatesObject.ConvertIntoCartesian().ConvertIntoCylindrical()
 		case "SPHERICAL":
 			systemsCoordinatesObject = systemsCoordinatesObject.ConvertIntoCartesian().ConvertIntoSpherical()
-		case "POLAR":
-			systemsCoordinatesObject = systemsCoordinatesObject.ConvertIntoCartesian().ConvertIntoPolar()
 		default:
 			fmt.Println("finishing the program")
-			break
+			return
 		}
 		fmt.Println("The coordinates system you have chosen is:", systemsCoordinatesObject.Info())
-		fmt.Println("The coordinates are:", systemsCoordinatesObject)
+		fmt.Println("The coordinates are:", systemsCoordinatesObject.String(decimalPlaces))
 	}
 
 }
