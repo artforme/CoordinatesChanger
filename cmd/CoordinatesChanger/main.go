@@ -11,6 +11,9 @@ func main() {
 	// Run the main function of the application
 	var tempSystemCoordinates string
 	systemsCoordinatesObject := InitCoordinates(tempSystemCoordinates)
+	if systemsCoordinatesObject == nil {
+		return
+	}
 
 	fmt.Println("The coordinates system you have chosen is:", systemsCoordinatesObject.Info())
 	var decimalPlaces uint
@@ -32,6 +35,9 @@ func main() {
 			systemsCoordinatesObject = systemsCoordinatesObject.ConvertIntoCartesian().ConvertIntoSpherical()
 		case "4":
 			systemsCoordinatesObject = InitCoordinates(tempSystemCoordinates)
+			if systemsCoordinatesObject == nil {
+				return
+			}
 		default:
 			fmt.Println("finishing the program")
 			return
