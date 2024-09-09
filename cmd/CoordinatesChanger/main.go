@@ -34,15 +34,15 @@ func main() {
 
 	for {
 		fmt.Println("Enter the coordinates system you want to convert to:")
-		fmt.Println("CARTESIAN, CYLINDRICAL, SPHERICAL")
+		fmt.Println("CARTESIAN type 1, CYLINDRICAL type 2, SPHERICAL type 3")
 		fmt.Scan(&tempSystemCoordinates)
 		tempSystemCoordinates = strings.ToUpper(tempSystemCoordinates)
 		switch tempSystemCoordinates {
-		case "CARTESIAN":
+		case "1":
 			systemsCoordinatesObject = systemsCoordinatesObject.ConvertIntoCartesian()
-		case "CYLINDRICAL":
+		case "2":
 			systemsCoordinatesObject = systemsCoordinatesObject.ConvertIntoCartesian().ConvertIntoCylindrical()
-		case "SPHERICAL":
+		case "3":
 			systemsCoordinatesObject = systemsCoordinatesObject.ConvertIntoCartesian().ConvertIntoSpherical()
 		default:
 			fmt.Println("finishing the program")
