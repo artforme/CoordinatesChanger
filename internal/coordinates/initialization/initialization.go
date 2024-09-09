@@ -4,6 +4,7 @@ import (
 	coord "CoordinatesChanger/internal/coordinates/coordinatesInterface"
 	sysCoor "CoordinatesChanger/internal/coordinates/coordinatesSystems"
 	"fmt"
+	"math"
 	"strings"
 )
 
@@ -25,8 +26,13 @@ func Init(coordinatesSystem string) coord.CoordinatesSystem {
 
 	case "CYLINDRICAL":
 		var cylindrical sysCoor.Cylindrical
-		fmt.Println("Enter the radius, angle and z coordinates:")
+		fmt.Println("Enter the radius, phi and z coordinates:")
 		fmt.Scan(&first, &second, &third)
+		if second < 0 || second > math.Pi {
+			fmt.Println("Coordinate is Invalid, has to be 0 < phi < Pi ")
+			return nil
+		}
+
 		cylindrical.New(first, second, third)
 		return &cylindrical
 
@@ -34,6 +40,10 @@ func Init(coordinatesSystem string) coord.CoordinatesSystem {
 		var spherical sysCoor.Spherical
 		fmt.Println("Enter the radius, theta and phi coordinates:")
 		fmt.Scan(&first, &second, &third)
+		if second < 0 || second > math.Pi || third < 0 || third > math.Pi {
+			fmt.Println("Coordinates are Invalid, have to be 0 < angle < Pi ")
+			return nil
+		}
 		spherical.New(first, second, third)
 		return &spherical
 
